@@ -179,6 +179,125 @@ document.querySelectorAll('.about-grid, .visit-grid, .culture-grid, .contact-row
   io.observe(el);
 });
 
+// ---------- Build Festivals ----------
+const festivals = [
+  { month: 'May', name: 'Kumbam Festival', desc: 'The grand Kumbam festival at Sri Mariamman temple in the heart of Karur unites all communities. Sacred water is carried from the river Amaravathi for the celebration.' },
+  { month: 'January', name: 'Thaipoosam', desc: 'Celebrated in grand manner at the Kadambaneswarar temple, Kulithalai, during the Tamil month of Thai. Devotees carry kavadi in procession.' },
+  { month: 'April–May', name: 'Chithirai & Bramotsavam', desc: 'Fifteen days of grand festivals at Ayyermalai\'s Rathinagreeswarar temple, followed by Panguni Uthiram, Karthigai and the float (Teppam) festival.' },
+  { month: 'Throughout Year', name: 'Nerur Aradhanai', desc: 'Devotees from all over India visit the Jeeva Samadhi of saint Sadasiva Brahmendra at Nerur on the banks of the Kaveri, where the river flows south.' },
+];
+
+const festivalGrid = document.getElementById('festival-grid');
+
+festivals.forEach((item, i) => {
+  const card = document.createElement('div');
+  card.className = 'festival-card reveal';
+  card.style.transitionDelay = `${(i % 3) * 0.1}s`;
+  card.innerHTML = `
+    <span class="festival-month">${item.month}</span>
+    <h3>${item.name}</h3>
+    <p>${item.desc}</p>
+  `;
+  festivalGrid.appendChild(card);
+  io.observe(card);
+});
+
+// ---------- Build Gallery ----------
+const galleryImages = [
+  { src: 'images/hero.jpg', caption: 'Karur City — District Headquarters' },
+  { src: 'images/pasupathi.jpg', caption: 'Kalyana Pasupatheeswarar Temple' },
+  { src: 'images/temple.jpg', caption: 'Thanthonimalai — Then Tirupathi' },
+  { src: 'images/mayanur.jpg', caption: 'Mayanur Barrage on the Kaveri' },
+  { src: 'images/cauvery.jpg', caption: 'River Kaveri through the District' },
+  { src: 'images/amaravathi.jpg', caption: 'River Amaravathi at Karur' },
+  { src: 'images/kulithalai.jpg', caption: 'Kadambaneswarar Temple, Kulithalai' },
+  { src: 'images/handloom.jpg', caption: 'Handloom Weaving — Karur\'s Pride' },
+  { src: 'images/city2.jpg', caption: 'Karur — Land of Handlooms & Minerals' },
+];
+
+const galleryGrid = document.getElementById('gallery-grid');
+
+galleryImages.forEach((item, i) => {
+  const el = document.createElement('div');
+  el.className = 'gallery-item reveal';
+  el.style.transitionDelay = `${(i % 4) * 0.08}s`;
+  el.innerHTML = `
+    <img src="${item.src}" alt="${item.caption}" loading="lazy">
+    <div class="gallery-caption">${item.caption}</div>
+  `;
+  el.addEventListener('click', () => openLightbox(i));
+  galleryGrid.appendChild(el);
+  io.observe(el);
+});
+
+// ---------- Lightbox ----------
+const lightbox = document.createElement('div');
+lightbox.className = 'lightbox';
+lightbox.innerHTML = `
+  <button class="lightbox-close" aria-label="Close">&times;</button>
+  <button class="lightbox-prev" aria-label="Previous">&#10094;</button>
+  <img src="" alt="">
+  <button class="lightbox-next" aria-label="Next">&#10095;</button>
+  <div class="lightbox-caption"></div>
+`;
+document.body.appendChild(lightbox);
+
+const lbImg = lightbox.querySelector('img');
+const lbCaption = lightbox.querySelector('.lightbox-caption');
+let lbIndex = 0;
+
+function openLightbox(index) {
+  lbIndex = index;
+  renderLightbox();
+  lightbox.classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+
+function renderLightbox() {
+  const item = galleryImages[lbIndex];
+  lbImg.src = item.src;
+  lbImg.alt = item.caption;
+  lbCaption.textContent = item.caption;
+}
+
+function closeLightbox() {
+  lightbox.classList.remove('open');
+  document.body.style.overflow = '';
+}
+
+lightbox.querySelector('.lightbox-close').addEventListener('click', closeLightbox);
+lightbox.querySelector('.lightbox-prev').addEventListener('click', (e) => {
+  e.stopPropagation();
+  lbIndex = (lbIndex - 1 + galleryImages.length) % galleryImages.length;
+  renderLightbox();
+});
+lightbox.querySelector('.lightbox-next').addEventListener('click', (e) => {
+  e.stopPropagation();
+  lbIndex = (lbIndex + 1) % galleryImages.length;
+  renderLightbox();
+});
+lightbox.addEventListener('click', (e) => {
+  if (e.target === lightbox) closeLightbox();
+});
+document.addEventListener('keydown', (e) => {
+  if (!lightbox.classList.contains('open')) return;
+  if (e.key === 'Escape') closeLightbox();
+  if (e.key === 'ArrowLeft') {
+    lbIndex = (lbIndex - 1 + galleryImages.length) % galleryImages.length;
+    renderLightbox();
+  }
+  if (e.key === 'ArrowRight') {
+    lbIndex = (lbIndex + 1) % galleryImages.length;
+    renderLightbox();
+  }
+});
+
+// ---------- Reveal new sections ----------
+document.querySelectorAll('.festival-grid, .gallery-grid, .help-grid').forEach((el) => {
+  el.classList.add('reveal');
+  io.observe(el);
+});
+
 // ---------- Contact form (demo) ----------
 const contactForm = document.getElementById('contact-form');
 
