@@ -14,12 +14,6 @@
 
 ---
 
-### 🌐 Live Demo
-
-**Website:** https://your-s3-static-website-url
-
----
-
 </div>
 
 # 📖 Project Overview
@@ -171,13 +165,19 @@ AWS_CodePipeline/
 ├── README.md
 │
 └── screenshots/
-      ├── github-repository.png
-      ├── s3-bucket.png
-      ├── bucket-policy.png
-      ├── pipeline-created.png
-      ├── pipeline-running.png
-      ├── pipeline-success.png
-      └── live-website.png
+      ├── GitHub Repository.png
+      ├── Upload Successful.png
+      ├── S3 Bucket Objects.png
+      ├── Bucket Policy.png
+      ├── Static Website Hosting.png
+      ├── Live Website Home.png
+      ├── Pipeline Configuration Review.png
+      ├── Pipeline Initial Creation.png
+      ├── Pipeline Build Running.png
+      ├── Pipeline Test Running.png
+      ├── Pipeline Success.png
+      ├── GitHub Commit.png
+      └── Updated Website.png
 ```
 
 ---
@@ -186,149 +186,129 @@ AWS_CodePipeline/
 
 ## 1️⃣ Create GitHub Repository
 
-- Create a GitHub repository.
-- Upload the website source code.
+- Create a GitHub repository (`Dhanush104/aws-s3-codepipeline-static-website`).
+- Upload and commit the website source code.
 
-📷 Screenshot
-
----
-
-## 2️⃣ Create Amazon S3 Bucket
-
-- Create a bucket.
-- Upload website files.
-- Enable static website hosting.
-
-📷 Screenshot
+![GitHub Repository](screenshots/GitHub%20Repository.png)
 
 ---
 
-## 3️⃣ Configure Bucket Policy
+## 2️⃣ Create Amazon S3 Bucket & Upload Assets
 
-- Disable Block Public Access.
-- Add bucket policy.
-- Allow public read access.
+- Create an S3 bucket (`dhanush-portfolio-aws`).
+- Upload website files (`index.html`, `css/`, `js/`, `images/`).
 
-📷 Screenshot
+![Upload Successful](screenshots/Upload%20Successful.png)
+![S3 Bucket Objects](screenshots/S3%20Bucket%20Objects.png)
+
+---
+
+## 3️⃣ Configure Bucket Security & Policy
+
+- Disable Block Public Access settings.
+- Add bucket policy allowing public `s3:GetObject` access.
+
+![Bucket Policy](screenshots/Bucket%20Policy.png)
 
 ---
 
 ## 4️⃣ Configure Static Website Hosting
 
-- Enable Static Website Hosting
-- Set
+- Enable Static Website Hosting in S3 bucket properties.
+- Set `index.html` as the index document.
 
-```
-index.html
-```
-
-as the index document.
-
-📷 Screenshot
+![Static Website Hosting](screenshots/Static%20Website%20Hosting.png)
+![Live Website Home](screenshots/Live%20Website%20Home.png)
 
 ---
 
 ## 5️⃣ Create AWS CodePipeline
 
-Configure
+- Configure pipeline steps:
+  - **Source:** GitHub (via AWS CodeConnection)
+  - **Build:** AWS CodeBuild
+  - **Test:** AWS CodeBuild
+  - **Deploy:** Amazon S3
 
-- Source
-
-GitHub
-
-- Build
-
-AWS CodeBuild
-
-- Test
-
-AWS CodeBuild
-
-- Deploy
-
-Amazon S3
-
-📷 Screenshot
+![Pipeline Configuration Review](screenshots/Pipeline%20Configuration%20Review.png)
+![Pipeline Initial Creation](screenshots/Pipeline%20Initial%20Creation.png)
 
 ---
 
-## 6️⃣ Trigger Deployment
+## 6️⃣ Trigger Automated CI/CD Deployment
 
-Commit changes.
+- Commit and push changes to GitHub repository.
+- GitHub webhook triggers AWS CodePipeline automatically.
+- Pipeline executes through Source → Build → Test → Deploy stages.
 
-GitHub automatically triggers CodePipeline.
-
-Pipeline executes
-
-Source
-
-↓
-
-Build
-
-↓
-
-Test
-
-↓
-
-Deploy
-
-↓
-
-Website Updated
-
-📷 Screenshot
+![GitHub Commit](screenshots/GitHub%20Commit.png)
+![Pipeline Build Running](screenshots/Pipeline%20Build%20Running.png)
+![Pipeline Test Running](screenshots/Pipeline%20Test%20Running.png)
+![Pipeline Success](screenshots/Pipeline%20Success.png)
+![Updated Website](screenshots/Updated%20Website.png)
 
 ---
 
 # 📸 Project Screenshots
 
-## GitHub Repository
-
-![GitHub](screenshots/github-repository.png)
-
----
-
-## Amazon S3 Bucket
-
-![S3](screenshots/s3-bucket.png)
+### 1. GitHub Repository
+![GitHub Repository](screenshots/GitHub%20Repository.png)
 
 ---
 
-## Bucket Policy
-
-![Policy](screenshots/bucket-policy.png)
-
----
-
-## Static Website Hosting
-
-![Hosting](screenshots/static-hosting.png)
+### 2. S3 Assets Uploaded & Bucket Objects
+![Upload Successful](screenshots/Upload%20Successful.png)
+![S3 Bucket Objects](screenshots/S3%20Bucket%20Objects.png)
 
 ---
 
-## CodePipeline
-
-![Pipeline](screenshots/pipeline-created.png)
-
----
-
-## Pipeline Execution
-
-![Pipeline Running](screenshots/pipeline-running.png)
+### 3. S3 Bucket Policy & Permissions
+![Bucket Policy](screenshots/Bucket%20Policy.png)
 
 ---
 
-## Pipeline Success
-
-![Success](screenshots/pipeline-success.png)
+### 4. S3 Static Website Hosting Configuration
+![Static Website Hosting](screenshots/Static%20Website%20Hosting.png)
 
 ---
 
-## Live Website
+### 5. Initial Live Website Deployment
+![Live Website Home](screenshots/Live%20Website%20Home.png)
 
-![Website](screenshots/live-website.png)
+---
+
+### 6. AWS CodePipeline Setup & Review
+![Pipeline Configuration Review](screenshots/Pipeline%20Configuration%20Review.png)
+
+---
+
+### 7. Pipeline Initial Execution Started
+![Pipeline Initial Creation](screenshots/Pipeline%20Initial%20Creation.png)
+
+---
+
+### 8. GitHub Code Change Commit Trigger
+![GitHub Commit](screenshots/GitHub%20Commit.png)
+
+---
+
+### 9. Pipeline Build Stage Running
+![Pipeline Build Running](screenshots/Pipeline%20Build%20Running.png)
+
+---
+
+### 10. Pipeline Test Stage Running
+![Pipeline Test Running](screenshots/Pipeline%20Test%20Running.png)
+
+---
+
+### 11. Pipeline Execution Fully Succeeded
+![Pipeline Success](screenshots/Pipeline%20Success.png)
+
+---
+
+### 12. Updated Live Website Deployed
+![Updated Website](screenshots/Updated%20Website.png)
 
 ---
 
@@ -344,17 +324,6 @@ Website Updated
 | Test Stage | Success | ✅ Pass |
 | Deploy Stage | Success | ✅ Pass |
 | Website Updated | Success | ✅ Pass |
-
----
-
-# 🚧 Challenges Faced
-
-- Amazon S3 Access Denied (403 Forbidden)
-- Bucket Policy Configuration
-- Public Access Permissions
-- GitHub Authorization
-- IAM Role Configuration
-- Pipeline Trigger Verification
 
 ---
 
@@ -403,9 +372,9 @@ Computer Science Engineer
 
 Cloud Computing | AWS | DevOps | Full Stack Developer
 
-📧 Email: your-email@example.com
+📧 Email: trdhanush1234@gmail.com
 
-🔗 LinkedIn: https://linkedin.com/in/your-profile
+🔗 LinkedIn: https://www.linkedin.com/in/dhanushkumar2004/
 
 💻 GitHub: https://github.com/Dhanush104
 
