@@ -198,9 +198,6 @@ AWS_CodePipeline/
 - Create an S3 bucket (`dhanush-portfolio-aws`).
 - Upload website files (`index.html`, `css/`, `js/`, `images/`).
 
-![Upload Successful](screenshots/Upload%20Successful.png)
-![S3 Bucket Objects](screenshots/S3%20Bucket%20Objects.png)
-
 ---
 
 ## 3️⃣ Configure Bucket Security & Policy
@@ -208,17 +205,12 @@ AWS_CodePipeline/
 - Disable Block Public Access settings.
 - Add bucket policy allowing public `s3:GetObject` access.
 
-![Bucket Policy](screenshots/Bucket%20Policy.png)
-
 ---
 
 ## 4️⃣ Configure Static Website Hosting
 
 - Enable Static Website Hosting in S3 bucket properties.
 - Set `index.html` as the index document.
-
-![Static Website Hosting](screenshots/Static%20Website%20Hosting.png)
-![Live Website Home](screenshots/Live%20Website%20Home.png)
 
 ---
 
@@ -230,9 +222,6 @@ AWS_CodePipeline/
   - **Test:** AWS CodeBuild
   - **Deploy:** Amazon S3
 
-![Pipeline Configuration Review](screenshots/Pipeline%20Configuration%20Review.png)
-![Pipeline Initial Creation](screenshots/Pipeline%20Initial%20Creation.png)
-
 ---
 
 ## 6️⃣ Trigger Automated CI/CD Deployment
@@ -240,12 +229,6 @@ AWS_CodePipeline/
 - Commit and push changes to GitHub repository.
 - GitHub webhook triggers AWS CodePipeline automatically.
 - Pipeline executes through Source → Build → Test → Deploy stages.
-
-![GitHub Commit](screenshots/GitHub%20Commit.png)
-![Pipeline Build Running](screenshots/Pipeline%20Build%20Running.png)
-![Pipeline Test Running](screenshots/Pipeline%20Test%20Running.png)
-![Pipeline Success](screenshots/Pipeline%20Success.png)
-![Updated Website](screenshots/Updated%20Website.png)
 
 ---
 
