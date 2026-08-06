@@ -189,8 +189,6 @@ AWS_CodePipeline/
 - Create a GitHub repository (`Dhanush104/aws-s3-codepipeline-static-website`).
 - Upload and commit the website source code.
 
-![GitHub Repository](screenshots/GitHub%20Repository.png)
-
 ---
 
 ## 2️⃣ Create Amazon S3 Bucket & Upload Assets
